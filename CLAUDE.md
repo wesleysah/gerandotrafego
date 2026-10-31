@@ -22,7 +22,8 @@ Fluxo de edição: alterar `src/template.html`, rodar `python3 build.py`, confer
 
 ## Identidade visual
 - Verde da marca: `#3dcb7f`. Acento lima: `#b8f55a`. Gradiente dos botões: lima para verde.
-- Fundo escuro `#050806`, cards `#0b120e`. Uma seção clara (métricas) para quebrar o ritmo.
+- Fundo escuro `#050806`, cards `#0b120e`. As seções intercalam fundo escuro e claro: classe `.light` na `<section>` troca as variáveis de cor; classe `.dark` cria um bloco escuro dentro de seção clara (foto do "quem sou" e caixa do CTA final).
+- Hovers em botões, chips, cards, lista e FAQ, mais um brilho que segue o mouse nos cards (`.spot`, criado via JS). Só em aparelhos com mouse (`@media (hover:hover)`).
 - Fonte: Manrope (Google Fonts), pesos 300 a 800.
 - Visual inspirado num template Elementor (página de curso de importação) que foi reconstruído em código limpo: cards com glow, faixa rolante, jornada em 3 passos, card de oferta, selo, "quem sou" e FAQ.
 
@@ -32,7 +33,7 @@ Fluxo de edição: alterar `src/template.html`, rodar `python3 build.py`, confer
 3. Dores (4 cards).
 4. Serviços (4 cards): estratégia, campanhas Meta e Google, rastreamento, otimização.
 5. Jornada em 3 passos: diagnóstico, plano e implementação, otimização e escala.
-6. Seção clara: métricas CPL, CPA, ROAS, conversão + comparativo "só impulsionar" x "gestão estratégica".
+6. Métricas CPL, CPA, ROAS, conversão + comparativo "só impulsionar" x "gestão estratégica".
 7. Pra quem é (qualificação do cliente).
 8. Diagnóstico gratuito (`#diagnostico`): formulário (nome, segmento, faturamento, investimento atual) que monta a mensagem do WhatsApp + selo "R$ 0 / risco zero".
 9. Quem está por trás (foto ainda é placeholder com o símbolo).

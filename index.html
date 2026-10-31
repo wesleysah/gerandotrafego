@@ -10,20 +10,31 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
+:root,.dark{
   --bg:#050806; --bg2:#080d0a; --card:#0b120e; --card2:#0f1813;
   --line:rgba(61,203,127,.16); --line2:rgba(255,255,255,.07);
   --green:#3dcb7f; --lime:#b8f55a; --text:#eef5f0; --muted:#97a69d;
   --grad:linear-gradient(100deg,#c8ff5e 0%,#7ee36b 45%,#3dcb7f 100%);
+  --hl:var(--grad);
   --r:20px;
 }
+.dark{color:var(--text)}
+/* Seções claras (intercaladas com as escuras) */
+.light{
+  --bg:#f3f7f4; --bg2:#fff; --card:#fff; --card2:#f7faf8;
+  --line:rgba(27,154,85,.3); --line2:#e1e9e3;
+  --lime:#1c8a4f; --text:#0b130e; --muted:#526158;
+  --hl:linear-gradient(100deg,#0f7a3e,#1fae5f);
+  background:var(--bg);color:var(--text);
+}
+.light .pcard,.light .step,.light .fit li,.light .stat{box-shadow:0 20px 40px -30px rgba(10,40,20,.35)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 img,svg{display:block}
 .wrap{width:min(1180px,92vw);margin-inline:auto}
-.hl{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hl{background:var(--hl);-webkit-background-clip:text;background-clip:text;color:transparent}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);padding:7px 14px;border:1px solid var(--line);border-radius:99px;background:rgba(61,203,127,.06)}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
 h1,h2,h3{line-height:1.1;letter-spacing:-.02em}
@@ -134,32 +145,29 @@ header.scrolled{background:rgba(5,8,6,.78);backdrop-filter:blur(14px);border-col
 .step p{color:var(--muted);font-size:15px}
 .step p strong{color:var(--text)}
 
-/* Light section */
-.light{background:#f3f7f4;color:#0b130e}
-.light .sub{color:#526158}
-.light .eyebrow{color:#1c8a4f;background:rgba(61,203,127,.1);border-color:rgba(61,203,127,.35)}
+/* Metrics */
 .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.mt{padding:28px 24px;border-radius:var(--r);background:#fff;border:1px solid #e1e9e3;box-shadow:0 20px 40px -30px rgba(10,40,20,.35);transition:transform .3s}
+.mt{position:relative;padding:28px 24px;border-radius:var(--r);background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line2);transition:transform .3s,border-color .3s,box-shadow .3s}
 .mt:hover{transform:translateY(-5px)}
-.mt .tag{display:inline-block;font-weight:800;font-size:26px;letter-spacing:-.02em;margin-bottom:4px;background:linear-gradient(100deg,#1b9a55,#3dcb7f);-webkit-background-clip:text;background-clip:text;color:transparent}
-.mt .full{font-size:13px;font-weight:700;color:#1c8a4f;margin-bottom:12px;display:block}
-.mt p{color:#526158;font-size:15px}
+.mt .tag{display:inline-block;font-weight:800;font-size:26px;letter-spacing:-.02em;margin-bottom:4px;background:var(--hl);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mt .full{font-size:13px;font-weight:700;color:var(--green);margin-bottom:12px;display:block}
+.mt p{color:var(--muted);font-size:15px}
 .compare{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:56px}
-.col{padding:32px;border-radius:var(--r)}
-.col.bad{background:#fff;border:1px solid #e1e9e3}
-.col.good{background:#08110b;color:var(--text);border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(61,203,127,.5)}
+.col{position:relative;padding:32px;border-radius:var(--r);transition:transform .35s,box-shadow .35s,border-color .35s}
+.col.bad{background:var(--card);border:1px solid var(--line2)}
+.col.good{background:radial-gradient(120% 100% at 0 0,#14271a,#08110b);color:var(--text);border:1px solid rgba(61,203,127,.4);box-shadow:0 30px 60px -30px rgba(61,203,127,.5)}
 .col h3{font-size:20px;margin-bottom:18px;display:flex;align-items:center;gap:10px}
 .col ul{list-style:none;display:grid;gap:12px}
 .col li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px}
 .col li svg{width:20px;height:20px;flex:none;margin-top:2px}
-.col.bad li svg{color:#c2463d}
+.col.bad li svg{color:#ff6b5e}
 .col.good li svg{color:var(--green)}
-.col.bad li{color:#3f4d45}
+.col.bad li{color:var(--muted)}
 
 /* Fit */
 .fit{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
 .fit ul{list-style:none;display:grid;gap:14px}
-.fit li{display:flex;gap:16px;align-items:flex-start;padding:20px 22px;border-radius:16px;background:var(--card);border:1px solid var(--line2);font-size:16px}
+.fit li{position:relative;display:flex;gap:16px;align-items:flex-start;padding:20px 22px;border-radius:16px;background:var(--card);border:1px solid var(--line2);font-size:16px}
 .fit li .ck{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--grad);color:#06100a;flex:none}
 .fit li .ck svg{width:16px;height:16px}
 
@@ -177,7 +185,7 @@ header.scrolled{background:rgba(5,8,6,.78);backdrop-filter:blur(14px);border-col
 .form input:focus,.form select:focus{border-color:var(--green)}
 .form option{background:#0b120e}
 .ocard .note{color:var(--muted);font-size:13px;margin-top:14px}
-.seal{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;padding:28px 34px;border-radius:24px;background:var(--card);border:1px solid var(--line)}
+.seal{position:relative;display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;padding:28px 34px;border-radius:24px;background:var(--card);border:1px solid var(--line)}
 .seal .s{width:96px;height:96px;border-radius:22px;display:grid;place-items:center;text-align:center;background:linear-gradient(160deg,#173020,#0a140e);border:1px solid rgba(184,245,90,.35);box-shadow:0 0 40px -6px rgba(61,203,127,.55)}
 .seal .s b{display:block;font-size:30px;line-height:1;font-weight:800}
 .seal .s small{font-size:10.5px;letter-spacing:.14em;font-weight:800;color:var(--lime)}
@@ -196,7 +204,7 @@ header.scrolled{background:rgba(5,8,6,.78);backdrop-filter:blur(14px);border-col
 .about p{color:var(--muted);font-size:16.5px;margin-bottom:16px}
 .about p strong{color:var(--text)}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:32px 0 34px}
-.stat{padding:20px;border-radius:16px;background:var(--card);border:1px solid var(--line2)}
+.stat{position:relative;padding:20px;border-radius:16px;background:var(--card);border:1px solid var(--line2)}
 .stat b{display:block;font-size:24px;font-weight:800;line-height:1.1}
 .stat span{font-size:13px;color:var(--muted)}
 
@@ -225,6 +233,47 @@ footer svg{height:34px;width:auto}
 .wa svg{width:28px;height:28px}
 .wa::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--green);animation:pulse 2.2s infinite}
 @keyframes pulse{from{transform:scale(1);opacity:.8}to{transform:scale(1.6);opacity:0}}
+
+/* Hovers (só em aparelhos com mouse) */
+.spot{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(61,203,127,.16),transparent 65%)}
+.btn svg,.ico,.fit li .ck,.seal .s,.photo .ph svg,.photo img,.step .n,.nav .logo svg,footer svg{transition:transform .35s,filter .35s}
+.scard{transition:transform .35s,border-color .35s,box-shadow .35s}
+.scard .badge{transition:transform .6s,background .35s,color .35s}
+.scard::after{transition:width .35s}
+.step,.fit li,.stat,.chip,.seal,.olist li,.mcard{transition:transform .3s,border-color .3s,box-shadow .3s}
+.col li,.track span{transition:transform .25s,color .25s}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-14deg)}75%{transform:rotate(14deg)}}
+@media (hover:hover){
+  *:hover>.spot{opacity:1}
+  .btn:hover svg{transform:translateX(5px)}
+  .nav .logo:hover svg,footer svg:hover{transform:scale(1.04);filter:drop-shadow(0 0 12px rgba(61,203,127,.55))}
+  .chip:hover{transform:translateY(-3px);border-color:var(--green);box-shadow:0 12px 30px -12px rgba(61,203,127,.6)}
+  .chip:hover svg{animation:wiggle .6s}
+  .mcard:hover{border-color:var(--green);box-shadow:0 20px 50px -16px rgba(61,203,127,.55)}
+  .visual:hover .core svg{filter:drop-shadow(0 0 44px rgba(61,203,127,.9))}
+  .marquee:hover .track{animation-play-state:paused}
+  .track span:hover{color:var(--lime)}
+  .pcard:hover{box-shadow:0 26px 50px -24px rgba(61,203,127,.45)}
+  .pcard:hover .ico{transform:rotate(-8deg) scale(1.1)}
+  .scard:hover{transform:translateY(-8px);border-color:var(--line);box-shadow:0 30px 60px -30px rgba(61,203,127,.55)}
+  .scard:hover .badge{transform:translateX(-50%) rotate(360deg);background:var(--grad);color:#06100a}
+  .scard:hover::after{width:150px}
+  .step:hover{transform:translateY(-6px);border-color:var(--green);box-shadow:0 26px 50px -26px rgba(61,203,127,.5)}
+  .step:hover .n{transform:scale(1.06)}
+  .mt:hover{border-color:var(--green);box-shadow:0 26px 50px -26px rgba(61,203,127,.5)}
+  .col:hover{transform:translateY(-5px)}
+  .col li:hover{transform:translateX(6px)}
+  .fit li:hover{transform:translateX(8px);border-color:var(--green);box-shadow:0 20px 40px -24px rgba(61,203,127,.5)}
+  .fit li:hover .ck{transform:scale(1.15) rotate(-10deg)}
+  .olist li:hover{transform:translateX(4px)}
+  .seal:hover{border-color:var(--green);box-shadow:0 26px 50px -26px rgba(61,203,127,.5)}
+  .seal:hover .s{transform:rotate(-6deg) scale(1.06)}
+  .photo:hover .ph svg{transform:scale(1.08) rotate(-4deg)}
+  .photo:hover img{transform:scale(1.04)}
+  .stat:hover{transform:translateY(-4px);border-color:var(--green)}
+  details:hover{border-color:var(--green)}
+  summary:hover .pl{background:rgba(61,203,127,.15)}
+}
 
 /* Reveal (only when JS active) */
 .js .rv{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
@@ -349,7 +398,7 @@ footer svg{height:34px;width:auto}
 <div class="marquee"><div class="track"><span>Meta Ads</span><span>Google Ads</span><span>Alavancando seu faturamento</span><span>Leads qualificados</span><span>Em busca do seu melhor cliente</span><span>Remarketing</span><span>Funis de venda</span><span>Escala com lucro</span><span>Meta Ads</span><span>Google Ads</span><span>Alavancando seu faturamento</span><span>Leads qualificados</span><span>Em busca do seu melhor cliente</span><span>Remarketing</span><span>Funis de venda</span><span>Escala com lucro</span><span>Meta Ads</span><span>Google Ads</span><span>Alavancando seu faturamento</span><span>Leads qualificados</span><span>Em busca do seu melhor cliente</span><span>Remarketing</span><span>Funis de venda</span><span>Escala com lucro</span><span>Meta Ads</span><span>Google Ads</span><span>Alavancando seu faturamento</span><span>Leads qualificados</span><span>Em busca do seu melhor cliente</span><span>Remarketing</span><span>Funis de venda</span><span>Escala com lucro</span></div></div>
 
 <!-- DORES -->
-<section>
+<section class="light">
   <div class="wrap">
     <div class="head center rv">
       <span class="eyebrow">Você se identifica?</span>
@@ -365,7 +414,7 @@ footer svg{height:34px;width:auto}
 </section>
 
 <!-- SERVIÇOS -->
-<section style="padding-top:0">
+<section>
   <div class="wrap">
     <div class="head center rv">
       <span class="eyebrow">O que eu faço pelo seu negócio</span>
@@ -382,7 +431,7 @@ footer svg{height:34px;width:auto}
 </section>
 
 <!-- JORNADA -->
-<section style="background:linear-gradient(180deg,var(--bg),var(--bg2))">
+<section class="light">
   <div class="glow" style="width:500px;height:500px;background:#3dcb7f;left:50%;top:20%;transform:translateX(-50%);opacity:.12"></div>
   <div class="wrap" style="position:relative">
     <div class="head center rv">
@@ -397,8 +446,8 @@ footer svg{height:34px;width:auto}
   </div>
 </section>
 
-<!-- MÉTRICAS (seção clara) -->
-<section class="light">
+<!-- MÉTRICAS -->
+<section>
   <div class="wrap">
     <div class="head center rv">
       <span class="eyebrow">O que realmente importa</span>
@@ -435,7 +484,7 @@ footer svg{height:34px;width:auto}
 </section>
 
 <!-- PRA QUEM É -->
-<section>
+<section class="light">
   <div class="wrap fit">
     <div class="head rv" style="margin:0">
       <span class="eyebrow">Pra quem é</span>
@@ -452,7 +501,7 @@ footer svg{height:34px;width:auto}
 </section>
 
 <!-- OFERTA / DIAGNÓSTICO -->
-<section id="diagnostico" style="padding-top:0">
+<section id="diagnostico">
   <div class="wrap offer">
     <div class="ocard rv">
       <div class="glow" style="width:420px;height:420px;background:#3dcb7f;left:50%;top:-260px;transform:translateX(-50%);opacity:.3"></div>
@@ -492,9 +541,9 @@ footer svg{height:34px;width:auto}
 <div class="marquee"><div class="track"><span>Meta Ads</span><span>Google Ads</span><span>Alavancando seu faturamento</span><span>Leads qualificados</span><span>Em busca do seu melhor cliente</span><span>Remarketing</span><span>Funis de venda</span><span>Escala com lucro</span><span>Meta Ads</span><span>Google Ads</span><span>Alavancando seu faturamento</span><span>Leads qualificados</span><span>Em busca do seu melhor cliente</span><span>Remarketing</span><span>Funis de venda</span><span>Escala com lucro</span><span>Meta Ads</span><span>Google Ads</span><span>Alavancando seu faturamento</span><span>Leads qualificados</span><span>Em busca do seu melhor cliente</span><span>Remarketing</span><span>Funis de venda</span><span>Escala com lucro</span><span>Meta Ads</span><span>Google Ads</span><span>Alavancando seu faturamento</span><span>Leads qualificados</span><span>Em busca do seu melhor cliente</span><span>Remarketing</span><span>Funis de venda</span><span>Escala com lucro</span></div></div>
 
 <!-- SOBRE -->
-<section>
+<section class="light">
   <div class="wrap about">
-    <div class="photo rv">
+    <div class="photo dark rv">
       <!-- TROQUE este bloco .ph por <img src="sua-foto.jpg" alt="Seu nome"> -->
       <div class="ph"><svg viewBox="137 139 508 508" xmlns="http://www.w3.org/2000/svg">
   <path fill="#3dcb7f" d="M388.21,285.19c-59.58,0-108.07,47.93-108.18,107.49-.11,59.81,49.08,107.89,108.89,107.89h3.44c40.59,0,78.01-23,95.42-59.66.35-.73.69-1.66,1.02-2.26h-100.23c-25.45,0-46.6-20.1-46.72-45.55-.12-25.66,20.73-45.99,46.36-45.99h179.37v44.26c0,99.59-81.55,182.79-181.14,183.19-100.95.41-183.18-81.96-182.62-182.94.55-99.51,83.74-180.91,183.25-180.91h118.59v-61.93h-120.03c-32.88,0-64.79,6.59-94.85,19.3-29.02,12.28-55.08,29.91-77.44,52.28-22.37,22.37-39.94,48.45-52.21,77.47-12.72,30.06-19.16,61.99-19.16,94.87s6.44,64.81,19.16,94.87c12.27,29.02,29.84,55.07,52.21,77.44,22.36,22.37,48.42,39.94,77.44,52.21,30.06,12.71,61.97,19.16,94.85,19.16s64.79-6.44,94.85-19.16c29.02-12.27,55.08-29.84,77.44-52.2,22.37-22.37,40.04-48.43,52.32-77.44,12.71-30.06,19.27-61.98,19.27-94.86v-107.53H388.21Z"/>
@@ -519,7 +568,7 @@ footer svg{height:34px;width:auto}
 </section>
 
 <!-- FAQ -->
-<section style="padding-top:0">
+<section>
   <div class="wrap">
     <div class="head center rv">
       <span class="eyebrow">Perguntas frequentes</span>
@@ -537,9 +586,9 @@ footer svg{height:34px;width:auto}
 </section>
 
 <!-- CTA FINAL -->
-<section class="final" style="padding-top:0">
+<section class="final light">
   <div class="wrap">
-    <div class="box rv">
+    <div class="box dark rv">
       <div class="grid-bg"></div>
       <div style="position:relative">
         <span class="eyebrow">Em busca do seu melhor cliente</span>
@@ -631,10 +680,24 @@ if ('IntersectionObserver' in window){
       const sib = [...e.target.parentElement.children].filter(c => c.classList.contains('rv'));
       e.target.style.transitionDelay = (Math.max(0, sib.indexOf(e.target)) * 90) + 'ms';
       e.target.classList.add('in'); io.unobserve(e.target);
+      const t = e.target, d = parseInt(t.style.transitionDelay) || 0;
+      setTimeout(() => { t.classList.remove('rv','in'); t.style.transitionDelay = ''; }, d + 850);
     }
   }), {threshold:.12, rootMargin:'0px 0px -40px 0px'});
   rv.forEach(el => io.observe(el));
 } else rv.forEach(el => el.classList.add('in'));
+
+/* Brilho que acompanha o mouse nos cards */
+if (matchMedia('(hover:hover)').matches){
+  document.querySelectorAll('.pcard,.scard,.step,.mt,.col,.fit li,.stat,.seal').forEach(el => {
+    const s = document.createElement('i'); s.className = 'spot'; el.prepend(s);
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+}
 </script>
 </body>
 </html>
