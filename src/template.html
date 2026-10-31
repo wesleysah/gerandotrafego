@@ -234,6 +234,14 @@ footer svg{height:34px;width:auto}
 .wa::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--green);animation:pulse 2.2s infinite}
 @keyframes pulse{from{transform:scale(1);opacity:.8}to{transform:scale(1.6);opacity:0}}
 
+/* Cursor foguete: só nas áreas pretas (nas claras volta o cursor normal) */
+body,.light .dark{cursor:{{CURSOR}},auto}
+.light{cursor:auto}
+a,button,summary,select,.btn{cursor:{{CURSOR_HOVER}},pointer}
+.light a,.light button,.light summary,.light .btn{cursor:pointer}
+.light .dark a,.light .dark .btn{cursor:{{CURSOR_HOVER}},pointer}
+input,textarea{cursor:text}
+
 /* Hovers (só em aparelhos com mouse) */
 .spot{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(61,203,127,.16),transparent 65%)}
 .btn svg,.ico,.fit li .ck,.seal .s,.photo .ph svg,.photo img,.step .n,.nav .logo svg,footer svg{transition:transform .35s,filter .35s}

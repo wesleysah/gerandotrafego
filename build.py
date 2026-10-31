@@ -8,8 +8,15 @@ LOGO='<svg viewBox="163 161 1594 463" xmlns="http://www.w3.org/2000/svg" role="i
 sym=open(up+'simbolo-verde.svg',encoding='utf-8').read()
 body=re.search(r'</defs>([\s\S]*)</svg>',sym).group(1).replace('class="cls-1"','fill="#3dcb7f"')
 SYMBOL='<svg viewBox="137 139 508 508" xmlns="http://www.w3.org/2000/svg">'+body+'</svg>'
+import urllib.parse
+rk=open(up+'foguete.svg',encoding='utf-8').read()
+rd=re.search(r'<path[^>]*\sd="([^"]+)"',rk).group(1)
+def cur(fill):
+    svg=f'<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="150 162 470 470"><path fill="{fill}" fill-rule="evenodd" stroke="#050806" stroke-width="14" paint-order="stroke" d="{rd}"/></svg>'
+    return 'url("data:image/svg+xml,'+urllib.parse.quote(svg,safe=' =:/,.-')+'") 31 5'
+CUR=cur('#3dcb7f'); CURH=cur('#b8f55a')
 items=["Meta Ads","Google Ads","Alavancando seu faturamento","Leads qualificados","Em busca do seu melhor cliente","Remarketing","Funis de venda","Escala com lucro"]
 MAR=''.join(f'<span>{t}</span>' for t in items*4)
-h=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'src','template.html'),encoding='utf-8').read().replace('{{LOGO}}',LOGO).replace('{{SYMBOL}}',SYMBOL).replace('{{MARQUEE}}',MAR)
+h=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'src','template.html'),encoding='utf-8').read().replace('{{LOGO}}',LOGO).replace('{{SYMBOL}}',SYMBOL).replace('{{MARQUEE}}',MAR).replace('{{CURSOR_HOVER}}',CURH).replace('{{CURSOR}}',CUR)
 assert '—' not in h, 'em dash found'
 open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'index.html'),'w',encoding='utf-8').write(h); print(len(h))

@@ -14,7 +14,7 @@ Bio da marca usada como base da copy:
 
 ## Estrutura dos arquivos
 - `index.html`: o site final. Arquivo único, autocontido (CSS, JS, logo e ícones em SVG inline). É o que vai para a hospedagem.
-- `src/template.html`: fonte editável. Contém os marcadores `{{LOGO}}`, `{{SYMBOL}}` e `{{MARQUEE}}`.
+- `src/template.html`: fonte editável. Contém os marcadores `{{LOGO}}`, `{{SYMBOL}}`, `{{MARQUEE}}`, `{{CURSOR}}` e `{{CURSOR_HOVER}}`.
 - `build.py`: gera o `index.html` a partir do template e dos SVGs (`python3 build.py`). Também falha se houver travessão (em dash) no texto.
 - `src/logos/`: logos originais da marca em SVG.
 
@@ -24,6 +24,7 @@ Fluxo de edição: alterar `src/template.html`, rodar `python3 build.py`, confer
 - Verde da marca: `#3dcb7f`. Acento lima: `#b8f55a`. Gradiente dos botões: lima para verde.
 - Fundo escuro `#050806`, cards `#0b120e`. As seções intercalam fundo escuro e claro: classe `.light` na `<section>` troca as variáveis de cor; classe `.dark` cria um bloco escuro dentro de seção clara (foto do "quem sou" e caixa do CTA final).
 - Hovers em botões, chips, cards, lista e FAQ, mais um brilho que segue o mouse nos cards (`.spot`, criado via JS). Só em aparelhos com mouse (`@media (hover:hover)`).
+- Cursor do mouse vira o foguete da marca (`src/logos/foguete.svg`) só nas áreas pretas; nas seções claras volta o cursor normal. Em links e botões o foguete fica lima. O `build.py` gera o cursor (marcadores `{{CURSOR}}` e `{{CURSOR_HOVER}}`).
 - Fonte: Manrope (Google Fonts), pesos 300 a 800.
 - Visual inspirado num template Elementor (página de curso de importação) que foi reconstruído em código limpo: cards com glow, faixa rolante, jornada em 3 passos, card de oferta, selo, "quem sou" e FAQ.
 
