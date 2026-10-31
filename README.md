@@ -2,8 +2,7 @@
 
 Landing page de gestão de tráfego pago (Meta Ads e Google Ads).
 
-- Arquivo único: `index.html` (logo, ícones e estilos embutidos)
-- WhatsApp: altere `WHATSAPP_NUMBER` no final do `index.html`
-- Foto do gestor: na seção "sobre", troque o bloco `.ph` por `<img src="foto.jpg" alt="Nome">`
-
-Hospedagem: GitHub Pages (branch `main`, pasta raiz).
+- `index.html`: site final, arquivo único (logo, ícones e estilos embutidos)
+- `src/template.html` + `build.py`: fonte editável; rode `python3 build.py` para gerar o `index.html`
+- WhatsApp: constante `WHATSAPP_NUMBER` no final do arquivo
+- Contexto completo do projeto: `CLAUDE.md`
