@@ -1,0 +1,7 @@
+# Bloqueia arquivos internos do projeto (só o index.html é público)
+<FilesMatch "\.(md|py|gitignore|nojekyll)$">
+  Require all denied
+</FilesMatch>
+RedirectMatch 404 ^/src(/|$)
+RedirectMatch 404 /\.git
+Options -Indexes

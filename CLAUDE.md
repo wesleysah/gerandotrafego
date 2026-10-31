@@ -49,9 +49,10 @@ Fluxo de edição: alterar `src/template.html`, rodar `python3 build.py`, confer
 - Seção de resultados/depoimentos: só com prints e depoimentos reais, nunca inventados.
 
 ## Hospedagem
-- Subdomínio já criado na Hostinger: `gerandotrafego.dablioagencia.com` (conta u869810459, pasta `public_html/gerandotrafego`), ainda vazio.
-- Plano: ligar este repositório ao Git da Hostinger (hPanel > Websites > Gerenciar > Avançado > Git) para deploy automático a cada push na branch `main`.
-- Prévia temporária publicada como artifact no claude.ai.
+- No ar em https://gerandotrafego.dablioagencia.com (Hostinger, conta u869810459, pasta `public_html/gerandotrafego`).
+- Deploy automático: a Hostinger está ligada a este repositório (branch `main`). Todo push publica o site.
+- O repositório inteiro é copiado para a hospedagem; o `.htaccess` bloqueia o acesso público a `.md`, `.py`, `src/` e `.git`. Arquivo novo que não deva ser público precisa entrar nessa regra.
+- Prévia antiga também publicada como artifact no claude.ai.
 
 ## Regras de copy e comunicação (preferências do Wesley)
 - Nunca usar travessão (em dash) nem emojis.
